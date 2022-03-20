@@ -1,12 +1,12 @@
 import os
 
-from config import Config
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import pygame
 from ball import Ball
 from events_handler import handle_events
 from player import Player
+from config import Config
 
 class Game(object):
   MARGIN = 10
