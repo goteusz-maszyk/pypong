@@ -36,7 +36,7 @@ def safe_exit(game):
     file.write("P1: " + str(game.player1.points) + "\n")
     file.write("P2: " + str(game.player2.points))
   except:
-    print("Couldn't save game results to file. Please create 'games' directory.")
+    print("Failed to save game results to file. Please create 'games' directory.")
     sys.exit(0)
 
   sys.exit(0)

@@ -1,4 +1,6 @@
 import os
+
+from config import Config
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import pygame
@@ -10,6 +12,7 @@ class Game(object):
   MARGIN = 10
 
   def __init__(self):
+    self.load_config()
     self.max_tps = 70.0
 
     pygame.init()
@@ -21,7 +24,14 @@ class Game(object):
     self.player2 = Player(self, self.screen.get_width() - 10 - Player.WIDTH)
     self.ball = Ball(self)
 
+
     pygame.display.set_caption("Pong!")
+
+    if self.config.get_color("background"):
+      self.background = self.config.get_color("background")
+    else:
+      bkg_file = self.config.get_string("background")
+      self.background = pygame.image.load(bkg_file)
 
     while True:
       handle_events(self)
@@ -37,13 +47,21 @@ class Game(object):
     self.player1.tick(False)
     self.player2.tick(True)
     self.ball.tick()
-    self.screen.fill((153, 217, 232))
+
+    if self.background.__class__ == pygame.Color:
+      self.screen.fill(self.config.get_color("background", True))
+    else:
+      self.screen.blit(self.background, (0, 0))
+
     self.draw()
 
   def draw(self):
     self.player1.draw()
     self.player2.draw()
     self.ball.draw()
+
+  def load_config(self):
+    self.config = Config("./config.yml")
 
 if __name__ == "__main__":
   Game()

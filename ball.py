@@ -18,7 +18,7 @@ class Ball:
     self.radius: int = self.__class__.RADIUS
     self.pos = pygame.math.Vector2(self.surface.get_width() / 2, self.surface.get_height() / 2)
 
-    self.color = (200, 70, 50)
+    self.color = self.game.config.get_color('ball-color', True)
 
     self.vector = { "x": 0, "y": 0, "angle": (random() * 360) }
 

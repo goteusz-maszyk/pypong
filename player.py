@@ -16,7 +16,7 @@ class Player(object):
     self.width: int = self.__class__.WIDTH
     self.height: int = self.__class__.HEIGHT
 
-    self.color = (34, 177, 76)
+    self.color = self.game.config.get_color('player-color', True)
     self.points = 0
 
   def tick(self, is_p2):
