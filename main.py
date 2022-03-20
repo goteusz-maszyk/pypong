@@ -14,18 +14,20 @@ class Game(object):
   def __init__(self):
     self.load_config()
     self.max_tps = 70.0
+    Game.instance = self
 
     pygame.init()
-    self.screen = pygame.display.set_mode((1500, 820))
+    size_multiplier = self.config.get_float("window-size-multipier")
+    self.screen = pygame.display.set_mode((1500 * size_multiplier, 820 * size_multiplier))
     self.tps_clock = pygame.time.Clock()
     self.tps_delta = 0.0
 
     self.player1 = Player(self, 10)
-    self.player2 = Player(self, self.screen.get_width() - 10 - Player.WIDTH)
+    self.player2 = Player(self, self.screen.get_width() - Game.MARGIN - Player.WIDTH)
     self.ball = Ball(self)
 
-
-    pygame.display.set_caption("Pong!")
+    pygame.display.set_icon(pygame.image.load("icon.png"))
+    pygame.display.set_caption(self.config.get_string("window-title", True))
 
     if self.config.get_color("background"):
       self.background = self.config.get_color("background")

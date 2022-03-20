@@ -31,3 +31,12 @@ class Config:
         print("Config value", path, "is invalid! Exiting.")
         sys.exit(1)
       return None
+
+  def get_float(self, path: str, raise_error: bool = False) -> float:
+    try:
+      return float(self.config[path])
+    except:
+      if raise_error:
+        print("Config value", path, "is invalid! Exiting.")
+        sys.exit(1)
+      return None

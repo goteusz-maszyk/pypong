@@ -1,3 +1,6 @@
 background: 153 217 232
 player-color: 34 177 76
 ball-color: 200 70 50
+
+window-title: Ping! Pong!
+window-size-multipier: 1 # 1 - adjusted for 1920x1080 screens

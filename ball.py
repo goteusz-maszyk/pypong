@@ -2,7 +2,6 @@ from math import cos, sin, radians
 from random import random
 import pygame
 from events_handler import check_win
-
 from player import Player
 
 
@@ -15,7 +14,7 @@ class Ball:
     self.game = game
     self.surface: pygame.Surface = game.screen
 
-    self.radius: int = self.__class__.RADIUS
+    self.radius: int = self.__class__.RADIUS * game.config.get_float("window-size-multipier")
     self.pos = pygame.math.Vector2(self.surface.get_width() / 2, self.surface.get_height() / 2)
 
     self.color = self.game.config.get_color('ball-color', True)
@@ -31,19 +30,15 @@ class Ball:
 
     angle = self.vector["angle"]
 
-    if self.pos.x <= self.game.__class__.MARGIN + Player.WIDTH:
-      if self.game.player1.y < self.pos.y < self.game.player1.y + Player.HEIGHT:
+    if self.pos.x <= self.game.__class__.MARGIN + Player.WIDTH * self.game.config.get_float("window-size-multipier"):
+      if self.game.player1.y < self.pos.y < self.game.player1.y + Player.HEIGHT * self.game.config.get_float("window-size-multipier"):
         angle = 360 - angle
-    elif self.pos.x >= self.surface.get_width() - self.game.__class__.MARGIN - Player.WIDTH:
-      if self.game.player2.y < self.pos.y < self.game.player2.y + Player.HEIGHT:
+    elif self.pos.x >= self.surface.get_width() - self.game.__class__.MARGIN - Player.WIDTH * self.game.config.get_float("window-size-multipier"):
+      if self.game.player2.y < self.pos.y < self.game.player2.y + Player.HEIGHT * self.game.config.get_float("window-size-multipier"):
         angle = 180 + (180 - angle)
 
-    if self.pos.x <= self.game.__class__.MARGIN: # ball left
-      angle = 360 - angle
     if self.pos.y <= self.game.__class__.MARGIN: # ball up
       angle -= 2*(angle - 90)
-    if self.pos.x >= self.surface.get_width() - self.game.__class__.MARGIN: # ball right
-      angle = 180 + (180 - angle)
     if self.pos.y >= self.surface.get_height() - self.game.__class__.MARGIN: # ball down
       if angle < 360: # ball down-left
         angle = 270 - (angle - 270)

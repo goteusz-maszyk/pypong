@@ -13,8 +13,8 @@ class Player(object):
 
     self.x: int = start_x
     self.y: int = 10
-    self.width: int = self.__class__.WIDTH
-    self.height: int = self.__class__.HEIGHT
+    self.width: int = Player.WIDTH * game.config.get_float("window-size-multipier")
+    self.height: int = Player.HEIGHT * game.config.get_float("window-size-multipier")
 
     self.color = self.game.config.get_color('player-color', True)
     self.points = 0

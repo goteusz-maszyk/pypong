@@ -10,5 +10,7 @@
 
 `python main.py`
 
-Players: use W/S keys for P1, UP/DOWN for P2
-Reset ball: j key
+Players: use W/S keys for P1, UP/DOWN for P2\
+Reset ball: J key\
+
+On smaller monitors you may need to change `window-size-multiplier`.
