@@ -6,7 +6,7 @@
 
 # Running
 
-### NOTE: Python 3.9 required. (Not tested on older versions)
+### NOTE: Python 3.10 required. (Not tested on older versions)
 
 `python main.py`
 
