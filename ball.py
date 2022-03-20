@@ -33,9 +33,11 @@ class Ball:
     if self.pos.x <= self.game.__class__.MARGIN + Player.WIDTH * self.game.config.get_float("window-size-multipier"):
       if self.game.player1.y < self.pos.y < self.game.player1.y + Player.HEIGHT * self.game.config.get_float("window-size-multipier"):
         angle = 360 - angle
+        angle += (random() * 20) - 10
     elif self.pos.x >= self.surface.get_width() - self.game.__class__.MARGIN - Player.WIDTH * self.game.config.get_float("window-size-multipier"):
       if self.game.player2.y < self.pos.y < self.game.player2.y + Player.HEIGHT * self.game.config.get_float("window-size-multipier"):
         angle = 180 + (180 - angle)
+        angle += (random() * 20) - 10
 
     if self.pos.y <= self.game.__class__.MARGIN: # ball up
       angle -= 2*(angle - 90)
