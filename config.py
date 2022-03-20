@@ -40,3 +40,12 @@ class Config:
         print("Config value", path, "is invalid! Exiting.")
         sys.exit(1)
       return None
+
+  def get_int(self, path: str, raise_error: bool = False) -> float:
+    try:
+      return int(self.config[path])
+    except:
+      if raise_error:
+        print("Config value", path, "is invalid! Exiting.")
+        sys.exit(1)
+      return None

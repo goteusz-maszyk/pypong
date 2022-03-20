@@ -14,7 +14,6 @@ class Game(object):
   def __init__(self):
     self.load_config()
     self.max_tps = 70.0
-    Game.instance = self
 
     pygame.init()
     size_multiplier = self.config.get_float("window-size-multipier")

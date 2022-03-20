@@ -1,5 +1,7 @@
 import pygame
 
+from point_display import PointDisplay
+
 class Player(object):
   WIDTH = 30
   HEIGHT = 200
@@ -10,6 +12,7 @@ class Player(object):
     self.game = game
     self.surface: pygame.Surface = game.screen
     self.pos = pygame.math.Vector2
+    self.is_p2: bool = (game.__class__.MARGIN != start_x)
 
     self.x: int = start_x
     self.y: int = 10
@@ -18,6 +21,8 @@ class Player(object):
 
     self.color = self.game.config.get_color('player-color', True)
     self.points = 0
+
+    self.point_display = PointDisplay(self)
 
   def tick(self, is_p2):
     keys = pygame.key.get_pressed()
@@ -40,6 +45,7 @@ class Player(object):
 
   def draw(self):
     pygame.draw.rect(self.surface, self.color, pygame.Rect(self.x, self.y, self.width, self.height))
+    self.point_display.tick()
   
   def teleport(self, x: int, y: int):
     self.x = x - self.width / 2
