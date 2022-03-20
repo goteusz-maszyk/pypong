@@ -6,7 +6,7 @@
 
 # Running
 
-### NOTE: Python 3.10 required. (Not tested on older versions)
+### NOTE: Python 3.10 required. That's because of `match` usage
 
 `python main.py`
 
