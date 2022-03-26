@@ -4,10 +4,13 @@ import pygame
 from events_handler import check_win
 from player import Player
 
+pygame.mixer.init()
 
 class Ball:
   RADIUS: int = 17
   SPEED: int = 4
+  click_sound = pygame.mixer.Sound("./assets/click.wav")
+  wall_sound = pygame.mixer.Sound("./assets/ball_wall.wav")
 
   def __init__(self, game):
     super().__init__()
@@ -34,14 +37,18 @@ class Ball:
       if self.game.player1.y < self.pos.y < self.game.player1.y + Player.HEIGHT * self.game.config.get_float("window-size-multipier"):
         angle = 360 - angle
         angle += (random() * 20) - 10
+        Ball.wall_sound.play()
     elif self.pos.x >= self.surface.get_width() - self.game.__class__.MARGIN - Player.WIDTH * self.game.config.get_float("window-size-multipier"):
       if self.game.player2.y < self.pos.y < self.game.player2.y + Player.HEIGHT * self.game.config.get_float("window-size-multipier"):
         angle = 180 + (180 - angle)
         angle += (random() * 20) - 10
+        Ball.wall_sound.play()
 
     if self.pos.y <= self.game.__class__.MARGIN: # ball up
       angle -= 2*(angle - 90)
+      Ball.wall_sound.play()
     if self.pos.y >= self.surface.get_height() - self.game.__class__.MARGIN: # ball down
+      Ball.wall_sound.play()
       if angle < 360: # ball down-left
         angle = 270 - (angle - 270)
       else: # ball down-right

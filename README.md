@@ -2,16 +2,16 @@
 
 ### Make sure you have required dependencies:
 
-`pip install pygame pyyaml`
+`pip install pygame pyyaml requests python-socketio`
 
 # Running
 
-### NOTE: Python 3.10 required. That's because of `match` usage
+### NOTE: Python 3.10 required.
 
 `python main.py`
 
 Players: use W/S keys for P1, UP/DOWN for P2\
-Reset ball: J key\
+Reset ball: J key
 
 On smaller monitors you may need to change `window-size-multiplier`.
 

@@ -21,11 +21,11 @@ def check_win(game):
   if game.ball.pos.x <= game.__class__.MARGIN:
     game.player2.points += 1
     game.ball.reset()
-    print("1 point for player 2!")
+    game.ball.click_sound.play()
   if game.ball.pos.x >= game.screen.get_width() - game.__class__.MARGIN:
     game.player1.points += 1
     game.ball.reset()
-    print("1 point for player 1!")
+    game.ball.click_sound.play()
 
 def safe_exit(game):
   print("Player 1 got", game.player1.points, "points")
@@ -37,6 +37,7 @@ def safe_exit(game):
     file.write("P2: " + str(game.player2.points))
   except:
     print("Failed to save game results to file. Please create 'games' directory.")
+    game.running = False
     sys.exit(0)
 
   sys.exit(0)
